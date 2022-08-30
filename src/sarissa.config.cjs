@@ -1,8 +1,8 @@
 export default {
   siteTitle: "mikamusic",
-  siteDescription: "フリー音源配布サイト",
+  siteDescription: "フリー音楽素材配布サイト",
   favicon: "/favicon.ico",
-  siteImagePath: "/images/sarissa.png",
+  siteImagePath: "/images/main.jpg",
   footer: "© 2022 - 2022 Suzuka Mikami",
   dateFormat: "yyyy/MM/dd",
   pageSize: 20,

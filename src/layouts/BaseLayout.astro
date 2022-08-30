@@ -5,6 +5,7 @@ import MobileNavbar from "../components/MobileNavbar.astro";
 import SiteImage from "../components/SiteImage.astro";
 import Sidebar from "../components/Sidebar.astro";
 import Footer from "../components/Footer.astro";
+import '@fontsource/caveat'
 
 const { pageTitle } = Astro.props;
 ---
@@ -30,7 +31,7 @@ const { pageTitle } = Astro.props;
         <div class="overflow-y-auto flex lg:justify-end w-fit sm:w-[30vw]">
           <div class="w-fit p-3 lg:m-6 bg-base-100">
             {Config.siteImagePath && <SiteImage />}
-            <h1 class="text-2xl p-2 pl-4 text-center"><a href="/">{Config.siteTitle}</a></h1>
+            <h1 class="text-5xl font-semibold p-2 pl-4 text-center site-title"><a href="/">{Config.siteTitle}</a></h1>
             <p class="text-sm pl-4 text-center">{Config.siteDescription}</p>
             <div class="divider"></div>
             <Sidebar />
@@ -40,3 +41,9 @@ const { pageTitle } = Astro.props;
     </div>
   </body>
 </html>
+
+<style>
+  .site-title {
+    font-family: "Caveat";
+  }
+</style>
