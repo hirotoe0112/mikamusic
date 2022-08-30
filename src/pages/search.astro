@@ -64,7 +64,7 @@ import PageLayout from "../layouts/PageLayout.astro";
   import Config from "../sarissa.config.cjs";
   import { formatDate } from "../sarissaUtils.js";
 
-  var response = await fetch("searchindex.json");
+  var response = await fetch("/searchindex.json");
   const data = await response.json();
 
   const textInputDelay = (fn, ms) => {
