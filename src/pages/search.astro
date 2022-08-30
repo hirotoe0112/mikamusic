@@ -3,7 +3,7 @@ import Config from "../sarissa.config.cjs";
 import PageLayout from "../layouts/PageLayout.astro";
 ---
 
-<PageLayout>
+<PageLayout pageTitle="フリーワードで探す">
   <div class="form-control">
     <div class="input-group">
       <input
@@ -51,7 +51,8 @@ import PageLayout from "../layouts/PageLayout.astro";
   </div>
   <div class="divider"></div>
   <p class="text-right" id="itemFoundText"></p>
-  <div class="overflow-x-auto w-full">
+  <div class="space-y-2 md:space-y-6" id="search-result"></div>
+  <div class="overflow-x-auto w-full" id="not-founded">
     <table class="table-normal w-full">
       <tbody id="results"></tbody>
     </table>
@@ -81,32 +82,48 @@ import PageLayout from "../layouts/PageLayout.astro";
     const res = fuse.search(text);
     var html = "";
     if (res.length) {
+      document.getElementById("not-founded").innerHTML = "";
       document.getElementById(
         "itemFoundText"
       ).innerHTML = `検索結果：${res.length}件`;
       for (let i = 0; i < res.length; i++) {
-        html += `<tr><td><div class="flex items-center space-x-3">`;
-        if (res[i].item.image) {
-          html += `<div class="avatar"><div class="mask mask-squircle w-12 h-12"><img src=${res[i].item.image} /></div></div>`;
-        }
-        html += `<a href=${res[i].item.slug}><div class="w-full"><div class="font-bold">${res[i].item.title}</div></a>`;
-        if (res[i].item.description) {
-          html += `<div class="text-sm opacity-50">${res[i].item.description}</div>`;
-        }
-        if (res[i].item.date) {
-          html += `<div class="card-actions justify-end">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>${formatDate(res[i].item.date)}</div>`;
-        }
-        html += `</div></div></td></tr>`;
+
+html += `<div class="block px-6 py-3 border">
+  <div class="card-actions justify-end">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+    </svg>
+    ${res[i].item.date}
+  </div>
+  <a href=${res[i].item.slug} target="_blank"><h2 class="card-title mb-1">${res[i].item.title}</h2></a>
+  <p class="mb-2">
+    ${res[i].item.description}
+  </p>
+  <div class="justify-start space-x-2 my-1">`
+    for(let j = 0; j < res[i].item.tags.length; j++){
+    html += `<a href="../category/${res[i].item.tags[j]}/1" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#${res[i].item.tags[j]}</a>`
+    }
+html += `</div>
+  <div class="justify-start space-x-2 my-4">
+    <audio controls src=${res[i].item.src} class="container h-10"></audio>
+  </div>
+  <div class="justify-start space-x-2 mt-4">
+    <button class="bg-transparent hover:bg-green-500 text-green-600 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded inline-flex items-center">
+  <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"></path></svg>
+  <a href=${res[i].item.src}><span>ダウンロード</span></a>
+</button>
+  </div>
+</div>`
       }
-      document.getElementById("results").innerHTML = html;
+      document.getElementById("search-result").innerHTML = html;
     } else {
       document.getElementById("itemFoundText").innerHTML = "";
-      document.getElementById("results").innerHTML =
-        "<h4> <b>見つかりませんでした。</b></h4>";
-    }
+      document.getElementById("search-result").innerHTML = "";
+      if(text !== "") {
+        document.getElementById("not-founded").innerHTML =
+          "<h4> <b>見つかりませんでした。</b></h4>";
+        }
+      }
   };
 
   document.getElementById("textSearch").onkeyup = textInputDelay(search, 300);

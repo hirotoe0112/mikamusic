@@ -51,7 +51,7 @@ let sortedCategories =
         return a.name.localeCompare(b.name);
       });
 ---
-<PageLayout>
+<PageLayout pageTitle="タグで探す">
     <div class="flex flex-wrap justify-center gap-2">
         {categorySettings.layout === "button" ?
             sortedCategories.map((category)=> (<CategoryButton category={category}/>)) 

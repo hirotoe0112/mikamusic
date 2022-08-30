@@ -39,4 +39,5 @@ export default {
     page: "Page",
     resultFound: " result(s) found",
   },
+  domain: "https://mikamusic.net/audio/"
 };
