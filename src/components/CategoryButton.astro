@@ -1,0 +1,13 @@
+---
+import Config from "../sarissa.config.cjs";
+
+const { category } = Astro.props;
+const countVisibility = Config.categorySettings.countVisibility;
+---
+
+<a href={`../category/${category.name}/1`}>
+  <button class="btn">
+    {category.name}
+    {countVisibility && <div class="badge badge-secondary">{category.count}</div>}
+  </button>
+</a>
