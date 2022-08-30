@@ -105,12 +105,12 @@ html += `<div class="block px-6 py-3 border">
     }
 html += `</div>
   <div class="justify-start space-x-2 my-4">
-    <audio controls src=${res[i].item.src} class="container h-10"></audio>
+    <audio controls src=${Config.audioRoot + res[i].item.src} class="container h-10"></audio>
   </div>
   <div class="justify-start space-x-2 mt-4">
     <button class="bg-transparent hover:bg-green-500 text-green-600 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded inline-flex items-center">
   <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"></path></svg>
-  <a href=${res[i].item.src}><span>ダウンロード</span></a>
+  <a href=${Config.audioRoot + res[i].item.src} download=${res[i].item.src}><span>ダウンロード</span></a>
 </button>
   </div>
 </div>`
