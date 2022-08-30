@@ -26,6 +26,6 @@ const downloadLink = Config.audioRoot + post.frontmatter.src
     <AudioPlayer src={downloadLink} />
   </div>
   <div class="justify-start space-x-2 mt-4">
-    <DownloadButton src={downloadLink} />
+    <DownloadButton src={post.frontmatter.src} />
   </div>
 </div>
