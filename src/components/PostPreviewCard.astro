@@ -1,9 +1,11 @@
 ---
+import Config from "../sarissa.config.cjs";
 import {formatDate} from "../sarissaUtils";
 import DownloadButton from "./DownloadButton.astro";
 import AudioPlayer from "./AudioPlayer.astro";
 
 const { post } = Astro.props;
+const downloadLink = Config.domain + post.frontmatter.src
 ---
 
 <div class="block px-6 py-3 border">
@@ -21,9 +23,9 @@ const { post } = Astro.props;
     {post.frontmatter.categories.map((category) =><a href={`../category/${category}/1`} class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{category}</a>)}
   </div>
   <div class="justify-start space-x-2 my-4">
-    <AudioPlayer src={post.frontmatter.src} />
+    <AudioPlayer src={downloadLink} />
   </div>
   <div class="justify-start space-x-2 mt-4">
-    <DownloadButton src={post.frontmatter.src} />
+    <DownloadButton src={downloadLink} />
   </div>
 </div>

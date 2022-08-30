@@ -32,7 +32,9 @@ const capitalize = ([firstLetter, ...restOfWord]) =>
 
 <PageLayout pageTitle={capitalize(params.category)}>
   <ResultCount count={page.total} />
-  {page.data.map((post) => (  <PostPreview post={post} />))}
+  <div class="space-y-2 md:space-y-6">
+    {page.data.map((post) => (  <PostPreview post={post} />))}
+  </div>
   <Pagination slot="paging" 
     currentPage={page.currentPage}
     totalPage={page.lastPage}

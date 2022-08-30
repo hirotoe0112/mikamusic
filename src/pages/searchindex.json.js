@@ -11,6 +11,8 @@ export async function get() {
             date: p.frontmatter.date,
             slug: p.url,
             image: p.frontmatter.image,
+            tags: p.frontmatter.categories,
+            src: p.frontmatter.src,
           };
         }),
       false,
