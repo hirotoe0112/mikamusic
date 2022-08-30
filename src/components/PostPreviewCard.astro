@@ -5,7 +5,7 @@ import DownloadButton from "./DownloadButton.astro";
 import AudioPlayer from "./AudioPlayer.astro";
 
 const { post } = Astro.props;
-const downloadLink = Config.domain + post.frontmatter.src
+const downloadLink = Config.audioRoot + post.frontmatter.src
 ---
 
 <div class="block px-6 py-3 border">
