@@ -1,10 +1,12 @@
 ---
+import Config from "../sarissa.config.cjs";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PostPreview from '../components/PostPreviewCard.astro';
 import DownloadButton from "../components/DownloadButton.astro";
 import AudioPlayer from "../components/AudioPlayer.astro";
 
 const { content } = Astro.props;
+const downloadLink = Config.audioRoot + content.src
 ---
 
 <BaseLayout pageTitle={content.title}>
@@ -23,7 +25,7 @@ const { content } = Astro.props;
       {content.description}
     </p>
     <div class="justify-start space-x-2">
-      <AudioPlayer src={content.src} />
+      <AudioPlayer src={downloadLink} />
     </div>
     <div class="justify-start space-x-2 mt-6">
       <DownloadButton src={content.src} />
