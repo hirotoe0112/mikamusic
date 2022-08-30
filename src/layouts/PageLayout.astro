@@ -1,0 +1,12 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const { pageTitle } = Astro.props;
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <div class="block rounded p-6">
+    <slot />
+  </div>
+  <slot name="paging"/>
+</BaseLayout>
